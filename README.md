@@ -3,9 +3,11 @@
         - Set-ExecutionPolicy RemoteSigned -Scope LocalMachine
     - to undo:
         - Set-ExecutionPolicy Restricted -Scope LocalMachine
-- then outside of an admin powershell session:
+- then in non-admin powershell session:
     - .\venv\Scripts\activate.ps1
     - which updates the command line interface (CLI) with the name of the virtualenv
     - to deactivate virtualenv can type:
         - deactivate
+- after activating virtualvenv
+    - pip install -r requirements.txt
 - I often use visual studio code as my IDE: https://code.visualstudio.com/
