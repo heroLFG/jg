@@ -1,0 +1,11 @@
+- to activate the virtualenv, had to first enable scripting
+    - with powershell as admin:
+        - Set-ExecutionPolicy RemoteSigned -Scope LocalMachine
+    - to undo:
+        - Set-ExecutionPolicy Restricted -Scope LocalMachine
+- then outside of an admin powershell session:
+    - .\venv\Scripts\activate.ps1
+    - which updates the command line interface (CLI) with the name of the virtualenv
+    - to deactivate virtualenv can type:
+        - deactivate
+- I often use visual studio code as my IDE: https://code.visualstudio.com/

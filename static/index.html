@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Jossh API Website</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Jossh API</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" id="navbar">
+            </ul>
+        </div>
+    </nav>
+    <div class="container" id="data">
+    </div>
+
+    <script>
+        window.onload = function () {
+            fetch('http://localhost:5000/jossh-api.json')
+                .then(response => response.json())
+                .then(data => {
+                    const navbar = document.getElementById('navbar');
+
+                    data.forEach(link => {
+                        let navItem = document.createElement('li');
+                        navItem.className = 'nav-item';
+                        let navLink = document.createElement('a');
+                        navLink.className = 'nav-link';
+                        navLink.textContent = link.split('/')[1].split('.')[0].replace(/-/g, ' ');
+                        navLink.href = '#';
+                        navLink.addEventListener('click', function () {
+                            fetchData(link);
+                        });
+                        navItem.appendChild(navLink);
+                        navbar.appendChild(navItem);
+                    });
+                });
+        };
+
+        function fetchData(link) {
+            fetch('http://localhost:5000/' + link)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('data');
+                    container.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                });
+        };
+    </script>
+</body>
+
+</html>
